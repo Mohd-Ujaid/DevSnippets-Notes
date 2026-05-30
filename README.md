@@ -19,7 +19,8 @@ The following diagram illustrates how the components of DevSnippets Notes intera
 
 ```mermaid
 graph TD
-    subgraph UI Layer (React Native & HSL Theme System)
+
+    subgraph "UI Layer (React Native & HSL Theme System)"
         App[App.tsx Navigation Shell] --> HS[HomeScreen: Snippets & Search]
         App --> SDS[SnippetDetailsScreen: Custom Notes & Tabs]
         App --> CSS[CreateSnippetScreen: Rich Forms & Tags]
@@ -28,18 +29,28 @@ graph TD
         App --> FS[FavoritesScreen: Starred Utilities]
     end
 
-    subgraph Core Services Layer
-        HS & SDS & CSS & FS --> DB[database.ts: SQLite Controller]
-        SDS & FMS --> FS_SERV[fileSystem.ts: Sandboxed Drive]
-        SS & HS & App --> PREF[preferences.ts: AsyncStorage Preferences]
+    subgraph "Core Services Layer"
+        HS --> DB[database.ts: SQLite Controller]
+        SDS --> DB
+        CSS --> DB
+        FS --> DB
+
+        SDS --> FS_SERV[fileSystem.ts: Sandboxed Drive]
+        FMS --> FS_SERV
+
+        SS --> PREF[preferences.ts: AsyncStorage Preferences]
+        HS --> PREF
+        App --> PREF
     end
 
-    subgraph Offline Storage Layer (Device Enclave)
+    subgraph "Offline Storage Layer (Device Enclave)"
         DB --> SQLite[(SQLite database.db)]
         FS_SERV --> LocalDir[(Documents/Sandbox/ Directory)]
         PREF --> AsyncStorage[(AsyncStorage User State)]
     end
-    
+```
+---
+```
     style App fill:#6366F1,stroke:#fff,stroke-width:2px,color:#fff
     style DB fill:#10B981,stroke:#fff,stroke-width:2px,color:#fff
     style FS_SERV fill:#06B6D4,stroke:#fff,stroke-width:2px,color:#fff
@@ -214,7 +225,3 @@ export const getThemeColors = (isDark: boolean) => ({
 *   **Credentials Exempt**: There are no remote AI APIs, AWS endpoints, or Google Gemini keys required. Everything compiles and performs locally, providing safe offline security.
 
 ---
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
