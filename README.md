@@ -48,9 +48,7 @@ graph TD
         FS_SERV --> LocalDir[(Documents/Sandbox/ Directory)]
         PREF --> AsyncStorage[(AsyncStorage User State)]
     end
-```
----
-```
+    %% Styles
     style App fill:#6366F1,stroke:#fff,stroke-width:2px,color:#fff
     style DB fill:#10B981,stroke:#fff,stroke-width:2px,color:#fff
     style FS_SERV fill:#06B6D4,stroke:#fff,stroke-width:2px,color:#fff
@@ -123,8 +121,8 @@ Get the project running on your development machine in just a few simple steps:
 ### Step 1: Clone and Enter the Directory
 Clone the repository to your local drive and navigate to the project directory:
 ```bash
-git clone <repository-url>
-cd DevSnippets
+git clone "https://github.com/Mohd-Ujaid/DevSnippets-Notes.git
+cd DevSnippets"
 ```
 
 ---
